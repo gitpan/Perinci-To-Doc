@@ -1,0 +1,103 @@
+
+use strict;
+use warnings;
+
+use 5.010001;
+
+use ExtUtils::MakeMaker 6.30;
+
+use File::ShareDir::Install;
+install_share dist => "share";
+
+
+my %WriteMakefileArgs = (
+  "ABSTRACT" => "Convert Rinci metadata to documentation",
+  "AUTHOR" => "Steven Haryanto <stevenharyanto\@gmail.com>",
+  "BUILD_REQUIRES" => {},
+  "CONFIGURE_REQUIRES" => {
+    "ExtUtils::MakeMaker" => "6.30",
+    "File::ShareDir::Install" => "0.03"
+  },
+  "DISTNAME" => "Perinci-To-Doc",
+  "EXE_FILES" => [
+    "bin/peri-doc",
+    "bin/peri-pkg-doc",
+    "bin/peri-func-doc"
+  ],
+  "LICENSE" => "perl",
+  "NAME" => "Perinci::To::Doc",
+  "PREREQ_PM" => {
+    "Data::Dump" => 0,
+    "Data::Dump::OneLine" => 0,
+    "Data::Sah" => "0.15",
+    "File::Which" => 0,
+    "List::MoreUtils" => 0,
+    "Locale::TextDomain" => 0,
+    "Log::Any" => 0,
+    "Markdown::Pod" => 0,
+    "Moo" => 0,
+    "Perinci::Access" => "0.25",
+    "Perinci::Access::Perl" => "0.38",
+    "Perinci::Object" => "0.11",
+    "Perinci::Sub::GetArgs::Argv" => 0,
+    "Perinci::Sub::Util" => 0,
+    "Rinci" => "v1.1.42",
+    "SHARYANTO::Role::Doc::Section" => 0,
+    "SHARYANTO::Role::Doc::Section::AddTextLines" => 0
+  },
+  "TEST_REQUIRES" => {
+    "File::Spec" => 0,
+    "IO::Handle" => 0,
+    "IPC::Open3" => 0,
+    "Test::More" => "0.98"
+  },
+  "VERSION" => "0.38",
+  "test" => {
+    "TESTS" => "t/*.t"
+  }
+);
+
+
+my %FallbackPrereqs = (
+  "Data::Dump" => 0,
+  "Data::Dump::OneLine" => 0,
+  "Data::Sah" => "0.15",
+  "File::Spec" => 0,
+  "File::Which" => 0,
+  "IO::Handle" => 0,
+  "IPC::Open3" => 0,
+  "List::MoreUtils" => 0,
+  "Locale::TextDomain" => 0,
+  "Log::Any" => 0,
+  "Markdown::Pod" => 0,
+  "Moo" => 0,
+  "Perinci::Access" => "0.25",
+  "Perinci::Access::Perl" => "0.38",
+  "Perinci::Object" => "0.11",
+  "Perinci::Sub::GetArgs::Argv" => 0,
+  "Perinci::Sub::Util" => 0,
+  "Rinci" => "v1.1.42",
+  "SHARYANTO::Role::Doc::Section" => 0,
+  "SHARYANTO::Role::Doc::Section::AddTextLines" => 0,
+  "Test::More" => "0.98"
+);
+
+
+unless ( eval { ExtUtils::MakeMaker->VERSION(6.63_03) } ) {
+  delete $WriteMakefileArgs{TEST_REQUIRES};
+  delete $WriteMakefileArgs{BUILD_REQUIRES};
+  $WriteMakefileArgs{PREREQ_PM} = \%FallbackPrereqs;
+}
+
+delete $WriteMakefileArgs{CONFIGURE_REQUIRES}
+  unless eval { ExtUtils::MakeMaker->VERSION(6.52) };
+
+WriteMakefile(%WriteMakefileArgs);
+
+{
+package
+MY;
+use File::ShareDir::Install qw(postamble);
+}
+
+
