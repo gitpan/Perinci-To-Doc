@@ -35,7 +35,7 @@
             "Data::Sah" : "0.15",
             "File::Which" : "0",
             "List::MoreUtils" : "0",
-            "Locale::TextDomain" : "0",
+            "Locale::TextDomain::UTF8" : "0",
             "Log::Any" : "0",
             "Markdown::Pod" : "0",
             "Moo" : "0",
@@ -71,7 +71,7 @@
          "web" : "https://github.com/sharyanto/perl-Perinci-To-Doc"
       }
    },
-   "version" : "0.39",
+   "version" : "0.40",
    "x_Dist_Zilla" : {
       "perl" : {
          "version" : "5.010001"

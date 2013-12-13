@@ -23,7 +23,7 @@ requires:
   Data::Sah: 0.15
   File::Which: 0
   List::MoreUtils: 0
-  Locale::TextDomain: 0
+  Locale::TextDomain::UTF8: 0
   Log::Any: 0
   Markdown::Pod: 0
   Moo: 0
@@ -40,7 +40,7 @@ resources:
   bugtracker: https://rt.cpan.org/Public/Dist/Display.html?Name=Perinci-To-Doc
   homepage: https://metacpan.org/release/Perinci-To-Doc
   repository: git://github.com/sharyanto/perl-Perinci-To-Doc.git
-version: 0.39
+version: 0.40
 x_Dist_Zilla:
   perl:
     version: 5.010001
