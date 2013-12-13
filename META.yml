@@ -40,7 +40,7 @@ resources:
   bugtracker: https://rt.cpan.org/Public/Dist/Display.html?Name=Perinci-To-Doc
   homepage: https://metacpan.org/release/Perinci-To-Doc
   repository: git://github.com/sharyanto/perl-Perinci-To-Doc.git
-version: 0.38
+version: 0.39
 x_Dist_Zilla:
   perl:
     version: 5.010001

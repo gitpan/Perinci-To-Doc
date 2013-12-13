@@ -4,12 +4,12 @@ use 5.010001;
 use Log::Any '$log';
 use Moo;
 
-use Locale::TextDomain 'Perinci-Sub-To-Text';
+use Locale::TextDomain 'Perinci-To-Doc';
 
 extends 'Perinci::Sub::To::FuncBase';
 with    'SHARYANTO::Role::Doc::Section::AddTextLines';
 
-our $VERSION = '0.38'; # VERSION
+our $VERSION = '0.39'; # VERSION
 
 sub BUILD {
     my ($self, $args) = @_;
@@ -100,7 +100,7 @@ Perinci::Sub::To::Text - Generate text documentation from Rinci function metadat
 
 =head1 VERSION
 
-version 0.38
+version 0.39
 
 =head1 SYNOPSIS
 

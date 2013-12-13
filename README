@@ -2,7 +2,7 @@ NAME
     Perinci::To::Doc - Convert Rinci metadata to documentation
 
 VERSION
-    version 0.38
+    version 0.39
 
 DESCRIPTION
     This distribution hosts several modules to generate documentation (text,
