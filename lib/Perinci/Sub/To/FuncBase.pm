@@ -12,7 +12,7 @@ with 'SHARYANTO::Role::Doc::Section';
 has meta => (is=>'rw');
 has name => (is=>'rw');
 
-our $VERSION = '0.41'; # VERSION
+our $VERSION = '0.42'; # VERSION
 
 sub BUILD {
     my ($self, $args) = @_;
@@ -106,6 +106,7 @@ sub gen_doc_section_arguments {
     my $raa = $dres->{args};
     for my $name (keys %$args) {
         my $arg = $args->{$name};
+        my $riargmeta = rimeta($arg);
         $arg->{default_lang} //= $meta->{default_lang};
         $arg->{schema} //= ['any'=>{}];
         my $s = $arg->{schema};
@@ -116,8 +117,8 @@ sub gen_doc_section_arguments {
         } elsif (defined $s->[1]{default}) {
             $ra->{human_arg_default} = dump1($s->[1]{default});
         }
-        $ra->{summary}     = $rimeta->langprop('summary');
-        $ra->{description} = $rimeta->langprop('description');
+        $ra->{summary}     = $riargmeta->langprop('summary');
+        $ra->{description} = $riargmeta->langprop('description');
         $ra->{arg}         = $arg;
 
         $raa->{$name} = $ra;
@@ -127,9 +128,9 @@ sub gen_doc_section_arguments {
 sub gen_doc_section_result {
     my ($self) = @_;
 
-    my $meta   = $self->meta;
-    my $rimeta = rimeta($meta->{result});
-    my $dres   = $self->{_doc_res};
+    my $meta      = $self->meta;
+    my $riresmeta = rimeta($meta->{result});
+    my $dres      = $self->{_doc_res};
 
     $dres->{res_schema} = $meta->{result} ? $meta->{result}{schema} : undef;
     $dres->{res_schema} //= [any => {}];
@@ -142,8 +143,8 @@ sub gen_doc_section_result {
         $dres->{human_ret} = '[status, msg, result, meta]';
     }
 
-    $dres->{res_summary}     = $rimeta->langprop("summary");
-    $dres->{res_description} = $rimeta->langprop("description");
+    $dres->{res_summary}     = $riresmeta->langprop("summary");
+    $dres->{res_description} = $riresmeta->langprop("description");
 }
 
 sub gen_doc_section_examples {
@@ -169,7 +170,7 @@ Perinci::Sub::To::FuncBase - Base class for Perinci::Sub::To::* function documen
 
 =head1 VERSION
 
-version 0.41
+version 0.42
 
 =for Pod::Coverage .+
 
@@ -195,7 +196,7 @@ Steven Haryanto <stevenharyanto@gmail.com>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2013 by Steven Haryanto.
+This software is copyright (c) 2014 by Steven Haryanto.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
