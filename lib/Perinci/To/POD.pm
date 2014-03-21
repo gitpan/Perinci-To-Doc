@@ -8,7 +8,7 @@ use Locale::TextDomain::UTF8 'Perinci-To-Doc';
 
 extends 'Perinci::To::PackageBase';
 
-our $VERSION = '0.45'; # VERSION
+our $VERSION = '0.46'; # VERSION
 
 sub BUILD {
     my ($self, $args) = @_;
@@ -97,7 +97,6 @@ sub gen_doc_section_functions {
 
     $self->add_doc_lines(
         "=head1 " . uc(__("Functions")),
-        "",
     );
 
     $self->SUPER::gen_doc_section_functions;
@@ -107,6 +106,7 @@ sub gen_doc_section_functions {
 
     # XXX categorize functions based on tags?
     for my $furi (sort keys %{ $dres->{functions} }) {
+        $self->add_doc_lines("");
         for (@{ $dres->{functions}{$furi} }) {
             chomp;
             $self->add_doc_lines($_);
@@ -129,7 +129,7 @@ Perinci::To::POD - Generate POD documentation for a package from Rinci metadata
 
 =head1 VERSION
 
-version 0.45
+version 0.46
 
 =head1 SYNOPSIS
 
