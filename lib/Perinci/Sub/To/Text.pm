@@ -9,7 +9,7 @@ use Locale::TextDomain::UTF8 'Perinci-To-Doc';
 extends 'Perinci::Sub::To::FuncBase';
 with    'SHARYANTO::Role::Doc::Section::AddTextLines';
 
-our $VERSION = '0.42'; # VERSION
+our $VERSION = '0.43'; # VERSION
 
 sub BUILD {
     my ($self, $args) = @_;
@@ -100,7 +100,7 @@ Perinci::Sub::To::Text - Generate text documentation from Rinci function metadat
 
 =head1 VERSION
 
-version 0.42
+version 0.43
 
 =head1 SYNOPSIS
 
@@ -109,10 +109,9 @@ version 0.42
  my $doc = Perinci::Sub::To::Text->new(meta => {...});
  say $doc->gen_doc;
 
-You can also try the L<peri-func-doc> script (included in the
-L<Perinci::Sub::To::POD> distribution) with the C<--format text> option:
+You can also try the L<peri-doc> script with the C<--format text> option:
 
- % peri-func-doc --format text /Some/Module/somefunc
+ % peri-doc --format text /Some/Module/somefunc
 
 To generate a usage-like help message for a function, you can try
 L<peri-func-usage> which is included in the L<Perinci::CmdLine> distribution.

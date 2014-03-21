@@ -8,7 +8,7 @@ use Locale::TextDomain::UTF8 'Perinci-To-Doc';
 
 extends 'Perinci::Sub::To::FuncBase';
 
-our $VERSION = '0.42'; # VERSION
+our $VERSION = '0.43'; # VERSION
 
 sub BUILD {
     my ($self, $args) = @_;
@@ -246,11 +246,11 @@ Perinci::Sub::To::POD - Generate POD documentation from Rinci function metadata
 
 =head1 VERSION
 
-version 0.42
+version 0.43
 
 =head1 SYNOPSIS
 
-You can use the included L<peri-func-doc> script, or:
+You can use the included L<peri-doc> script, or:
 
  use Perinci::Sub::To::POD;
  my $doc = Perinci::Sub::To::POD->new(url => "/Some/Module/somefunc");

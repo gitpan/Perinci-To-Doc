@@ -8,7 +8,7 @@ use Locale::TextDomain::UTF8 'Perinci-To-Doc';
 
 extends 'Perinci::To::PackageBase';
 
-our $VERSION = '0.42'; # VERSION
+our $VERSION = '0.43'; # VERSION
 
 sub BUILD {
     my ($self, $args) = @_;
@@ -129,19 +129,18 @@ Perinci::To::POD - Generate POD documentation for a package from Rinci metadata
 
 =head1 VERSION
 
-version 0.42
+version 0.43
 
 =head1 SYNOPSIS
 
-You can use the included L<peri-pkg-doc> script, or:
+You can use the included L<peri-doc> script, or:
 
  use Perinci::To::POD;
  my $doc = Perinci::To::POD->new(
      name=>"Foo::Bar", meta => {...}, child_metas => {...});
  say $doc->gen_doc;
 
-To generate documentation for a single function, see L<Perinci::Sub::To::POD> or
-the provided command-line script L<peri-func-doc>.
+To generate documentation for a single function, see L<Perinci::Sub::To::POD>.
 
 To generate a usage-like help message for a single function, you can try
 the L<peri-func-usage> from the L<Perinci::CmdLine> distribution.
