@@ -71,7 +71,7 @@
          "web" : "https://github.com/sharyanto/perl-Perinci-To-Doc"
       }
    },
-   "version" : "0.44",
+   "version" : "0.45",
    "x_Dist_Zilla" : {
       "perl" : {
          "version" : "5.018002"

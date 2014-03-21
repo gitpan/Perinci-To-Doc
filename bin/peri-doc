@@ -6,7 +6,7 @@ use warnings;
 
 use Perinci::Sub::Util qw(err);
 
-our $VERSION = '0.44'; # VERSION
+our $VERSION = '0.45'; # VERSION
 
 eval { require Perinci::CmdLine };
 if ($@) {
@@ -26,11 +26,12 @@ $SPEC{gen_doc} = {
         },
         format => {
             summary => 'Format',
-            schema => 'str',
+            schema => ['str', in => [qw/pod text man html/]],
         },
     },
 };
 sub gen_doc {
+    require File::Temp;
     require File::Which;
     require Perinci::Access;
 
@@ -63,13 +64,22 @@ sub gen_doc {
             $meta->{$_} = $ometa->{$_} if defined $ometa->{$_};
         }
 
-        if ($format eq 'man') {
+        if ($format =~ /pod|man|html/) {
             require Perinci::Sub::To::POD;
             $doc = Perinci::Sub::To::POD->new(meta=>$meta, name=>$fname);
             $res = $doc->gen_doc;
-            [200, "OK", $res, {
-                "cmdline.page_result"=>1,
-                "cmdline.pager"=>"pod2man | man -l -"}];
+            if ($format eq 'pod') {
+                [200, "OK", $res];
+            } elsif ($format eq 'html') {
+                my $tmpdir = File::Temp::tempdir(CLEANUP=>1);
+                [200, "OK", $res, {
+                    "cmdline.page_result"=>1,
+                    "cmdline.pager"=>"pod2html --cachedir '$tmpdir'"}];
+            } else { # man
+                [200, "OK", $res, {
+                    "cmdline.page_result"=>1,
+                    "cmdline.pager"=>"pod2man | man -l -"}];
+            }
         } else {
             require Perinci::Sub::To::Text;
             $doc = Perinci::Sub::To::Text->new(meta=>$meta, name=>$fname);
@@ -89,14 +99,23 @@ sub gen_doc {
                     if defined $ometas->{$uri}{$_};
             }
         }
-        if ($format eq 'man') {
+        if ($format =~ /pod|man|html/) {
             require Perinci::To::POD;
             $doc = Perinci::To::POD->new(
                 name=>$url, meta=>$meta, child_metas=>$cmetas);
             $res = $doc->gen_doc;
-            [200, "OK", $res, {
-                "cmdline.page_result"=>1,
-                "cmdline.pager"=>"pod2man | man -l -"}];
+            if ($format eq 'pod') {
+                [200, "OK", $res];
+            } elsif ($format eq 'html') {
+                my $tmpdir = File::Temp::tempdir(CLEANUP=>1);
+                [200, "OK", $res, {
+                    "cmdline.page_result"=>1,
+                    "cmdline.pager"=>"pod2html --cachedir '$tmpdir'"}];
+            } else { # man
+                [200, "OK", $res, {
+                    "cmdline.page_result"=>1,
+                    "cmdline.pager"=>"pod2man | man -l -"}];
+            }
         } else {
             require Perinci::To::Text;
             $doc = Perinci::To::Text->new(
@@ -132,7 +151,7 @@ peri-doc - Display text/POD documentation of Riap function or package
 
 =head1 VERSION
 
-version 0.44
+version 0.45
 
 =head1 SYNOPSIS
 
@@ -145,6 +164,14 @@ From command-line:
 =head1 DESCRIPTION
 
 This script will generate text/POD documentation for a Riap function or package.
+
+=head1 TODO
+
+=over
+
+=item * Support more pod2html options
+
+=back
 
 =head1 SEE ALSO
 
