@@ -8,7 +8,7 @@ use Locale::TextDomain::UTF8 'Perinci-To-Doc';
 
 extends 'Perinci::Sub::To::FuncBase';
 
-our $VERSION = '0.46'; # VERSION
+our $VERSION = '0.47'; # VERSION
 
 sub BUILD {
     my ($self, $args) = @_;
@@ -224,7 +224,7 @@ First element (status) is an integer containing HTTP status code
 (msg) is a string containing error message, or 'OK' if status is
 200. Third element (result) is optional, the actual result. Fourth
 element (meta) is called result metadata and is optional, a hash
-that contains extra information.")))
+that contains extra information.")), "")
          unless $rn;
 
     # XXX result summary
@@ -247,7 +247,7 @@ Perinci::Sub::To::POD - Generate POD documentation from Rinci function metadata
 
 =head1 VERSION
 
-version 0.46
+version 0.47
 
 =head1 SYNOPSIS
 
