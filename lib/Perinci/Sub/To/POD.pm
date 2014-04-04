@@ -8,7 +8,7 @@ use Locale::TextDomain::UTF8 'Perinci-To-Doc';
 
 extends 'Perinci::Sub::To::FuncBase';
 
-our $VERSION = '0.47'; # VERSION
+our $VERSION = '0.48'; # VERSION
 
 sub BUILD {
     my ($self, $args) = @_;
@@ -53,7 +53,11 @@ sub after_gen_doc {
             } elsif ($eg->{argv}) {
                 require Perinci::Sub::GetArgs::Argv;
                 my $gares = Perinci::Sub::GetArgs::Argv::get_args_from_argv(
-                    argv => $eg->{argv}, meta => $meta);
+                    argv => $eg->{argv},
+                    meta => $meta,
+                    per_arg_json => 1,
+                    per_arg_yaml => 1,
+                );
                 die "Can't convert argv to argv in example #$i ".
                     "of function $dres->{name}): $gares->[0] - $gares->[1]"
                         unless $gares->[0] == 200;
@@ -64,8 +68,15 @@ sub after_gen_doc {
             # XXX allow using language other than perl?
             require Data::Dump;
             my $argsdump = Data::Dump::dump($args);
-            $argsdump =~ s/^\{\s*//; $argsdump =~ s/\s*\}\n?$//;
-            my $out = "$dres->{name}($argsdump);";
+            $argsdump =~ s/^\{\n*//; $argsdump =~ s/,?\s*\}\n?$//;
+            my $out = join(
+                "",
+                $dres->{name}, "(",
+                $argsdump =~ /\n/ ? "\n" : "",
+                $argsdump,
+                $argsdump =~ /\n/ ? "\n" : "",
+                ");",
+            );
             my $resdump;
             if (exists $eg->{result}) {
                 $resdump = Data::Dump::dump($eg->{result});
@@ -92,7 +103,9 @@ sub after_gen_doc {
 
             $self->add_doc_lines(
                 $out . (defined($comment) ? " # $comment" : ""),
-                ("") x !!@expl,
+                ("", "") x !!@expl,
+                @expl,
+                ("", "") x !!@expl,
             );
         }
     }
@@ -247,7 +260,7 @@ Perinci::Sub::To::POD - Generate POD documentation from Rinci function metadata
 
 =head1 VERSION
 
-version 0.47
+version 0.48
 
 =head1 SYNOPSIS
 
