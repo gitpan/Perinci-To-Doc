@@ -4,21 +4,21 @@ use 5.010;
 use strict;
 use warnings;
 
-our $VERSION = '0.48'; # VERSION
+our $VERSION = '0.49'; # VERSION
 
 # generate human-readable short description of schema, this will be
 # handled in the future by Sah itself (using the human compiler).
 
 sub sah2human_short {
     require Data::Sah;
-    require List::MoreUtils;
+    require Function::Fallback::CoreOrPP;
 
     my ($s) = @_;
     if ($s->[0] eq 'any') {
         my @alts    = map {Data::Sah::normalize_schema($_)}
             @{$s->[1]{of} // []};
         my @types   = map {$_->[0]} @alts;
-        @types      = sort(List::MoreUtils::uniq(@types));
+        @types      = sort(Function::Fallback::CoreOrPP::uniq(@types));
         return join("|", @types) || 'any';
     } else {
         return $s->[0];
@@ -40,7 +40,7 @@ Perinci::ToUtil - Temporary utility module
 
 =head1 VERSION
 
-version 0.48
+version 0.49
 
 =head1 FUNCTIONS
 

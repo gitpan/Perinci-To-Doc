@@ -4,7 +4,6 @@ LICENSE
 LocaleData/fr/LC_MESSAGES/Perinci-To-Doc.mo
 LocaleData/id/LC_MESSAGES/Perinci-To-Doc.mo
 MANIFEST
-MANIFEST.SKIP
 META.json
 META.yml
 Makefile.PL
@@ -19,6 +18,9 @@ lib/Perinci/To/POD.pm
 lib/Perinci/To/PackageBase.pm
 lib/Perinci/To/Text.pm
 lib/Perinci/ToUtil.pm
+po/Perinci-To-Doc.pot
+po/fr.po
+po/id.po
 share/LocaleData/fr/LC_MESSAGES/Perinci-To-Doc.mo
 share/LocaleData/id/LC_MESSAGES/Perinci-To-Doc.mo
 t/00-compile.t

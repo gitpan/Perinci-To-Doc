@@ -13,7 +13,7 @@ has name => (is=>'rw');
 has meta => (is=>'rw');
 has child_metas => (is=>'rw');
 
-our $VERSION = '0.48'; # VERSION
+our $VERSION = '0.49'; # VERSION
 
 sub BUILD {
     my ($self, $args) = @_;
@@ -118,7 +118,7 @@ Perinci::To::PackageBase - Base class for Perinci::To::* package documentation g
 
 =head1 VERSION
 
-version 0.48
+version 0.49
 
 =for Pod::Coverage .+
 

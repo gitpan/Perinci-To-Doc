@@ -34,7 +34,7 @@
             "Data::Dump::OneLine" : "0",
             "Data::Sah" : "0.15",
             "File::Which" : "0",
-            "List::MoreUtils" : "0",
+            "Function::Fallback::CoreOrPP" : "0",
             "Locale::TextDomain::UTF8" : "0",
             "Log::Any" : "0",
             "Markdown::Pod" : "0",
@@ -71,7 +71,7 @@
          "web" : "https://github.com/sharyanto/perl-Perinci-To-Doc"
       }
    },
-   "version" : "0.48",
+   "version" : "0.49",
    "x_Dist_Zilla" : {
       "perl" : {
          "version" : "5.018002"
@@ -303,6 +303,11 @@
             "version" : "4.005"
          },
          {
+            "class" : "Dist::Zilla::Plugin::PruneFiles",
+            "name" : "@Author::SHARYANTO/PruneFiles",
+            "version" : "5.015"
+         },
+         {
             "class" : "Dist::Zilla::Plugin::ReadmeFromPod",
             "name" : "@Author::SHARYANTO/ReadmeFromPod",
             "version" : "0.21"
@@ -332,16 +337,6 @@
             "class" : "Dist::Zilla::Plugin::Test::Rinci",
             "name" : "@Author::SHARYANTO/Test::Rinci",
             "version" : "0.01"
-         },
-         {
-            "class" : "Dist::Zilla::Plugin::Run::BeforeBuild",
-            "name" : "@Author::SHARYANTO/Run::BeforeBuild",
-            "version" : "0.021"
-         },
-         {
-            "class" : "Dist::Zilla::Plugin::Run::Release",
-            "name" : "@Author::SHARYANTO/Run::Release",
-            "version" : "0.021"
          },
          {
             "class" : "Dist::Zilla::Plugin::LocaleTextDomain",
