@@ -5,6 +5,7 @@ use Data::Dump::OneLine qw(dump1);
 use Log::Any '$log';
 use Moo;
 use Perinci::Object;
+use Perinci::Sub::Normalize qw(normalize_function_metadata);
 use Perinci::ToUtil;
 
 with 'SHARYANTO::Role::Doc::Section';
@@ -12,7 +13,7 @@ with 'SHARYANTO::Role::Doc::Section';
 has meta => (is=>'rw');
 has name => (is=>'rw');
 
-our $VERSION = '0.49'; # VERSION
+our $VERSION = '0.50'; # VERSION
 
 sub BUILD {
     my ($self, $args) = @_;
@@ -32,6 +33,8 @@ sub BUILD {
 sub before_gen_doc {
     my ($self, %opts) = @_;
     $log->tracef("=> FuncBase's before_gen_doc(opts=%s)", \%opts);
+
+    $self->{meta} = normalize_function_metadata($self->{meta});
 
     # initialize hash to store [intermediate] result
     $self->{_doc_res} = {};
@@ -170,7 +173,7 @@ Perinci::Sub::To::FuncBase - Base class for Perinci::Sub::To::* function documen
 
 =head1 VERSION
 
-version 0.49
+This document describes version 0.50 of Perinci::Sub::To::FuncBase (from Perl distribution Perinci-To-Doc), released on 2014-04-30.
 
 =for Pod::Coverage .+
 

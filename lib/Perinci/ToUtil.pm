@@ -4,7 +4,7 @@ use 5.010;
 use strict;
 use warnings;
 
-our $VERSION = '0.49'; # VERSION
+our $VERSION = '0.50'; # VERSION
 
 # generate human-readable short description of schema, this will be
 # handled in the future by Sah itself (using the human compiler).
@@ -40,7 +40,7 @@ Perinci::ToUtil - Temporary utility module
 
 =head1 VERSION
 
-version 0.49
+This document describes version 0.50 of Perinci::ToUtil (from Perl distribution Perinci-To-Doc), released on 2014-04-30.
 
 =head1 FUNCTIONS
 

@@ -9,7 +9,7 @@ use Locale::TextDomain::UTF8 'Perinci-To-Doc';
 extends 'Perinci::Sub::To::FuncBase';
 with    'SHARYANTO::Role::Doc::Section::AddTextLines';
 
-our $VERSION = '0.49'; # VERSION
+our $VERSION = '0.50'; # VERSION
 
 sub BUILD {
     my ($self, $args) = @_;
@@ -80,6 +80,8 @@ First element (status) is an integer containing HTTP status code
 element (meta) is called result metadata and is optional, a hash
 that contains extra information."))
         unless $rn;
+    $self->add_doc_lines($dres->{res_summary} . ($dres->{res_schema} ? " ($dres->{res_schema}[0])" : "")) if $dres->{res_summary};
+
     $self->dec_doc_indent;
 
     $self->dec_doc_indent;
@@ -100,7 +102,7 @@ Perinci::Sub::To::Text - Generate text documentation from Rinci function metadat
 
 =head1 VERSION
 
-version 0.49
+This document describes version 0.50 of Perinci::Sub::To::Text (from Perl distribution Perinci-To-Doc), released on 2014-04-30.
 
 =head1 SYNOPSIS
 
