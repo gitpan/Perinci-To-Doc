@@ -41,7 +41,7 @@ resources:
   bugtracker: https://rt.cpan.org/Public/Dist/Display.html?Name=Perinci-To-Doc
   homepage: https://metacpan.org/release/Perinci-To-Doc
   repository: git://github.com/sharyanto/perl-Perinci-To-Doc.git
-version: '0.50'
+version: '0.51'
 x_Dist_Zilla:
   perl:
     version: '5.018002'
@@ -181,7 +181,7 @@ x_Dist_Zilla:
             -
               class: Pod::Weaver::Plugin::Perinci
               name: '@Author::SHARYANTO/Perinci'
-              version: '0.14'
+              version: '0.15'
             -
               class: Pod::Weaver::Section::Leftovers
               name: '@Author::SHARYANTO/Leftovers'
@@ -231,7 +231,7 @@ x_Dist_Zilla:
     -
       class: Dist::Zilla::Plugin::Rinci::Validate
       name: '@Author::SHARYANTO/Rinci::Validate'
-      version: '0.12'
+      version: '0.13'
     -
       class: Dist::Zilla::Plugin::SHARYANTO::OurPkgVersion
       name: '@Author::SHARYANTO/SHARYANTO::OurPkgVersion'

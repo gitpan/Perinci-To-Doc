@@ -13,7 +13,7 @@ has name => (is=>'rw');
 has meta => (is=>'rw');
 has child_metas => (is=>'rw');
 
-our $VERSION = '0.50'; # VERSION
+our $VERSION = '0.51'; # VERSION
 
 sub BUILD {
     my ($self, $args) = @_;
@@ -118,7 +118,7 @@ Perinci::To::PackageBase - Base class for Perinci::To::* package documentation g
 
 =head1 VERSION
 
-This document describes version 0.50 of Perinci::To::PackageBase (from Perl distribution Perinci-To-Doc), released on 2014-04-30.
+This document describes version 0.51 of Perinci::To::PackageBase (from Perl distribution Perinci-To-Doc), released on 2014-05-01.
 
 =for Pod::Coverage .+
 

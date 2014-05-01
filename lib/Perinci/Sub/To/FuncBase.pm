@@ -13,7 +13,7 @@ with 'SHARYANTO::Role::Doc::Section';
 has meta => (is=>'rw');
 has name => (is=>'rw');
 
-our $VERSION = '0.50'; # VERSION
+our $VERSION = '0.51'; # VERSION
 
 sub BUILD {
     my ($self, $args) = @_;
@@ -173,7 +173,7 @@ Perinci::Sub::To::FuncBase - Base class for Perinci::Sub::To::* function documen
 
 =head1 VERSION
 
-This document describes version 0.50 of Perinci::Sub::To::FuncBase (from Perl distribution Perinci-To-Doc), released on 2014-04-30.
+This document describes version 0.51 of Perinci::Sub::To::FuncBase (from Perl distribution Perinci-To-Doc), released on 2014-05-01.
 
 =for Pod::Coverage .+
 
