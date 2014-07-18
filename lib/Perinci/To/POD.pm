@@ -8,7 +8,7 @@ use Locale::TextDomain::UTF8 'Perinci-To-Doc';
 
 extends 'Perinci::To::PackageBase';
 
-our $VERSION = '0.51'; # VERSION
+our $VERSION = '0.52'; # VERSION
 
 sub BUILD {
     my ($self, $args) = @_;
@@ -129,7 +129,7 @@ Perinci::To::POD - Generate POD documentation for a package from Rinci metadata
 
 =head1 VERSION
 
-This document describes version 0.51 of Perinci::To::POD (from Perl distribution Perinci-To-Doc), released on 2014-05-01.
+This document describes version 0.52 of Perinci::To::POD (from Perl distribution Perinci-To-Doc), released on 2014-07-18.
 
 =head1 SYNOPSIS
 
