@@ -8,7 +8,7 @@ use Locale::TextDomain::UTF8 'Perinci-To-Doc';
 
 extends 'Perinci::Sub::To::FuncBase';
 
-our $VERSION = '0.52'; # VERSION
+our $VERSION = '0.53'; # VERSION
 
 sub BUILD {
     my ($self, $args) = @_;
@@ -266,9 +266,8 @@ element (meta) is called result metadata and is optional, a hash
 that contains extra information.")), "")
          unless $rn;
 
-    $self->add_doc_lines($dres->{res_summary} . ($dres->{res_schema} ? " ($dres->{res_schema}[0])" : ""), "") if $dres->{res_summary};
-
-    # XXX result description
+    $self->add_doc_lines(($dres->{res_summary} // "") . ($dres->{res_schema} ? " ($dres->{res_schema}[0])" : ""), "") if $dres->{res_summary} || $dres->{res_schema};
+    $self->add_doc_lines($dres->{res_description}, "") if $dres->{res_description};
 }
 
 1;
@@ -286,7 +285,7 @@ Perinci::Sub::To::POD - Generate POD documentation from Rinci function metadata
 
 =head1 VERSION
 
-This document describes version 0.52 of Perinci::Sub::To::POD (from Perl distribution Perinci-To-Doc), released on 2014-07-18.
+This document describes version 0.53 of Perinci::Sub::To::POD (from Perl distribution Perinci-To-Doc), released on 2014-07-18.
 
 =head1 SYNOPSIS
 

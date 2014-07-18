@@ -6,7 +6,7 @@ use warnings;
 
 use Perinci::Sub::Util qw(err);
 
-our $VERSION = '0.52'; # VERSION
+our $VERSION = '0.53'; # VERSION
 
 eval { require Perinci::CmdLine };
 if ($@) {
@@ -139,7 +139,7 @@ peri-doc - Display text/POD documentation of Riap function or package
 
 =head1 VERSION
 
-This document describes version 0.52 of peri-doc (from Perl distribution Perinci-To-Doc), released on 2014-07-18.
+This document describes version 0.53 of peri-doc (from Perl distribution Perinci-To-Doc), released on 2014-07-18.
 
 =head1 SYNOPSIS
 

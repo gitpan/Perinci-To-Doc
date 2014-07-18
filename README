@@ -2,7 +2,7 @@ NAME
     Perinci::To::Doc - Convert Rinci metadata to documentation
 
 VERSION
-    This document describes version 0.52 of Perinci::To::Doc (from Perl
+    This document describes version 0.53 of Perinci::To::Doc (from Perl
     distribution Perinci-To-Doc), released on 2014-07-18.
 
 DESCRIPTION
