@@ -33,7 +33,7 @@ my %WriteMakefileArgs = (
     "Function::Fallback::CoreOrPP" => 0,
     "Locale::TextDomain::UTF8" => 0,
     "Log::Any" => 0,
-    "Markdown::To::POD" => 0,
+    "Markdown::To::POD" => "0.02",
     "Moo" => 0,
     "Perinci::Access" => "0.25",
     "Perinci::Access::Perl" => "0.66",
@@ -52,7 +52,7 @@ my %WriteMakefileArgs = (
     "IPC::Open3" => 0,
     "Test::More" => "0.98"
   },
-  "VERSION" => "0.54",
+  "VERSION" => "0.55",
   "test" => {
     "TESTS" => "t/*.t"
   }
@@ -70,7 +70,7 @@ my %FallbackPrereqs = (
   "IPC::Open3" => 0,
   "Locale::TextDomain::UTF8" => 0,
   "Log::Any" => 0,
-  "Markdown::To::POD" => 0,
+  "Markdown::To::POD" => "0.02",
   "Moo" => 0,
   "Perinci::Access" => "0.25",
   "Perinci::Access::Perl" => "0.66",

@@ -25,7 +25,7 @@ requires:
   Function::Fallback::CoreOrPP: '0'
   Locale::TextDomain::UTF8: '0'
   Log::Any: '0'
-  Markdown::To::POD: '0'
+  Markdown::To::POD: '0.02'
   Moo: '0'
   Perinci::Access: '0.25'
   Perinci::Access::Perl: '0.66'
@@ -42,7 +42,7 @@ resources:
   bugtracker: https://rt.cpan.org/Public/Dist/Display.html?Name=Perinci-To-Doc
   homepage: https://metacpan.org/release/Perinci-To-Doc
   repository: git://github.com/sharyanto/perl-Perinci-To-Doc.git
-version: '0.54'
+version: '0.55'
 x_Dist_Zilla:
   perl:
     version: '5.018001'
