@@ -13,7 +13,7 @@ with 'SHARYANTO::Role::Doc::Section';
 has meta => (is=>'rw');
 has name => (is=>'rw');
 
-our $VERSION = '0.55'; # VERSION
+our $VERSION = '0.56'; # VERSION
 
 sub BUILD {
     my ($self, $args) = @_;
@@ -87,18 +87,34 @@ sub gen_doc_section_arguments {
     my $meta   = $self->meta;
     my $rimeta = rimeta($meta);
     my $dres   = $self->{_doc_res};
+    my $args_p = $meta->{args} // {};
 
-    # perl term for args, whether '%args' or '@args' etc
+    # perl term for args, whether '$arg1, $arg2, ...', or '%args', etc
     my $aa = $meta->{args_as} // 'hash';
     my $aplt;
-    if ($aa eq 'hash') {
+    if (!keys(%$args_p)) {
+        $aplt = '()';
+    } elsif ($aa eq 'hash') {
         $aplt = '(%args)';
     } elsif ($aa eq 'hashref') {
         $aplt = '(\%args)';
-    } elsif ($aa eq 'array') {
-        $aplt = '(@args)';
-    } elsif ($aa eq 'arrayref') {
-        $aplt = '(\@args)';
+    } elsif ($aa =~ /\Aarray(ref)?\z/) {
+        $aplt = join(
+            '',
+            '(',
+            ($aa eq 'arrayref' ? '[' : ''),
+            join(', ',
+                 map {
+                     my $var = $_; $var =~ s/[^A-Za-z0-9_]+/_/g;
+                     "\$$var" . ($args_p->{$_}{greedy} ? ', ...' : '');
+                 }
+                     sort {
+                         ($args_p->{$a}{pos} // 9999) <=>
+                             ($args_p->{$b}{pos} // 9999)
+                         } keys %$args_p),
+            ($aa eq 'arrayref' ? ']' : ''),
+            ')'
+        );
     } else {
         die "BUG: Unknown value of args_as '$aa'";
     }
@@ -173,7 +189,7 @@ Perinci::Sub::To::FuncBase - Base class for Perinci::Sub::To::* function documen
 
 =head1 VERSION
 
-This document describes version 0.55 of Perinci::Sub::To::FuncBase (from Perl distribution Perinci-To-Doc), released on 2014-07-21.
+This document describes version 0.56 of Perinci::Sub::To::FuncBase (from Perl distribution Perinci-To-Doc), released on 2014-07-22.
 
 =for Pod::Coverage .+
 

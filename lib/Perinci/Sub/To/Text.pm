@@ -9,7 +9,7 @@ use Locale::TextDomain::UTF8 'Perinci-To-Doc';
 extends 'Perinci::Sub::To::FuncBase';
 with    'SHARYANTO::Role::Doc::Section::AddTextLines';
 
-our $VERSION = '0.55'; # VERSION
+our $VERSION = '0.56'; # VERSION
 
 sub BUILD {
     my ($self, $args) = @_;
@@ -102,7 +102,7 @@ Perinci::Sub::To::Text - Generate text documentation from Rinci function metadat
 
 =head1 VERSION
 
-This document describes version 0.55 of Perinci::Sub::To::Text (from Perl distribution Perinci-To-Doc), released on 2014-07-21.
+This document describes version 0.56 of Perinci::Sub::To::Text (from Perl distribution Perinci-To-Doc), released on 2014-07-22.
 
 =head1 SYNOPSIS
 
