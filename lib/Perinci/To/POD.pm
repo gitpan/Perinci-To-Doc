@@ -8,7 +8,7 @@ use Locale::TextDomain::UTF8 'Perinci-To-Doc';
 
 extends 'Perinci::To::PackageBase';
 
-our $VERSION = '0.56'; # VERSION
+our $VERSION = '0.57'; # VERSION
 
 sub BUILD {
     my ($self, $args) = @_;
@@ -116,6 +116,27 @@ sub gen_doc_section_functions {
     }
 }
 
+sub gen_doc_section_links {
+    my $self = shift;
+
+    my $meta = $self->meta;
+
+    if ($meta->{links} && @{ $meta->{links} }) {
+        $self->add_doc_lines("=head1 " . __("SEE ALSO"), "");
+        for my $link (@{ $meta->{links} }) {
+            my $url = $link->{url};
+            # currently only handles pm: urls (link to another perl module)
+            next unless $url =~ m!\Apm:(?://)?(.+)!;
+            my $mod = $1;
+            $self->add_doc_lines(
+                "L<$mod>" .
+                    ($link->{summary} ? ", $link->{summary}." : "") .
+                    ($link->{summary} ? $self->_md2pod($link->{description}) : ""),
+                "");
+        }
+    }
+}
+
 1;
 # ABSTRACT: Generate POD documentation for a package from Rinci metadata
 
@@ -131,7 +152,7 @@ Perinci::To::POD - Generate POD documentation for a package from Rinci metadata
 
 =head1 VERSION
 
-This document describes version 0.56 of Perinci::To::POD (from Perl distribution Perinci-To-Doc), released on 2014-07-22.
+This document describes version 0.57 of Perinci::To::POD (from Perl distribution Perinci-To-Doc), released on 2014-11-29.
 
 =head1 SYNOPSIS
 
@@ -167,11 +188,11 @@ feature.
 
 =head1 AUTHOR
 
-Steven Haryanto <stevenharyanto@gmail.com>
+perlancar <perlancar@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2014 by Steven Haryanto.
+This software is copyright (c) 2014 by perlancar@cpan.org.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

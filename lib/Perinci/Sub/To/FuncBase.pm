@@ -13,7 +13,7 @@ with 'SHARYANTO::Role::Doc::Section';
 has meta => (is=>'rw');
 has name => (is=>'rw');
 
-our $VERSION = '0.56'; # VERSION
+our $VERSION = '0.57'; # VERSION
 
 sub BUILD {
     my ($self, $args) = @_;
@@ -189,7 +189,7 @@ Perinci::Sub::To::FuncBase - Base class for Perinci::Sub::To::* function documen
 
 =head1 VERSION
 
-This document describes version 0.56 of Perinci::Sub::To::FuncBase (from Perl distribution Perinci-To-Doc), released on 2014-07-22.
+This document describes version 0.57 of Perinci::Sub::To::FuncBase (from Perl distribution Perinci-To-Doc), released on 2014-11-29.
 
 =for Pod::Coverage .+
 
@@ -211,11 +211,11 @@ feature.
 
 =head1 AUTHOR
 
-Steven Haryanto <stevenharyanto@gmail.com>
+perlancar <perlancar@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2014 by Steven Haryanto.
+This software is copyright (c) 2014 by perlancar@cpan.org.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

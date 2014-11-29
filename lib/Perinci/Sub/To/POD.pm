@@ -1,5 +1,8 @@
 package Perinci::Sub::To::POD;
 
+our $DATE = '2014-11-29'; # DATE
+our $VERSION = '0.57'; # VERSION
+
 use 5.010001;
 use Log::Any '$log';
 use Moo;
@@ -7,8 +10,6 @@ use Moo;
 use Locale::TextDomain::UTF8 'Perinci-To-Doc';
 
 extends 'Perinci::Sub::To::FuncBase';
-
-our $VERSION = '0.56'; # VERSION
 
 sub BUILD {
     my ($self, $args) = @_;
@@ -269,7 +270,21 @@ that contains extra information.")), "")
          unless $rn;
 
     $self->add_doc_lines(($dres->{res_summary} // "") . ($dres->{res_schema} ? " ($dres->{res_schema}[0])" : ""), "") if $dres->{res_summary} || $dres->{res_schema};
-    $self->add_doc_lines($dres->{res_description}, "") if $dres->{res_description};
+    $self->add_doc_lines($self->_md2pod($dres->{res_description}), "") if $dres->{res_description};
+
+    if ($meta->{links} && @{ $meta->{links} }) {
+        $self->add_doc_lines(__("See also") . ":", "", "=over", "");
+        for my $link (@{ $meta->{links} }) {
+            my $url = $link->{url};
+            # currently only handles pm: urls (link to another perl module)
+            next unless $url =~ m!\Apm:(?://)?(.+)!;
+            my $mod = $1;
+            $self->add_doc_lines("* L<$mod>", "");
+            $self->add_doc_lines($link->{summary}.".", "") if $link->{summary};
+            $self->add_doc_lines($self->_md2pod($link->{description}), "") if $link->{description};
+        }
+        $self->add_doc_lines("=back", "");
+    }
 }
 
 1;
@@ -287,7 +302,7 @@ Perinci::Sub::To::POD - Generate POD documentation from Rinci function metadata
 
 =head1 VERSION
 
-This document describes version 0.56 of Perinci::Sub::To::POD (from Perl distribution Perinci-To-Doc), released on 2014-07-22.
+This document describes version 0.57 of Perinci::Sub::To::POD (from Perl distribution Perinci-To-Doc), released on 2014-11-29.
 
 =head1 SYNOPSIS
 
@@ -321,11 +336,11 @@ feature.
 
 =head1 AUTHOR
 
-Steven Haryanto <stevenharyanto@gmail.com>
+perlancar <perlancar@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2014 by Steven Haryanto.
+This software is copyright (c) 2014 by perlancar@cpan.org.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

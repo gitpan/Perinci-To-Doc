@@ -6,7 +6,7 @@ use warnings;
 
 use Perinci::Sub::Util qw(err);
 
-our $VERSION = '0.56'; # VERSION
+our $VERSION = '0.57'; # VERSION
 
 eval { require Perinci::CmdLine };
 if ($@) {
@@ -139,7 +139,7 @@ peri-doc - Display text/POD documentation of Riap function or package
 
 =head1 VERSION
 
-This document describes version 0.56 of peri-doc (from Perl distribution Perinci-To-Doc), released on 2014-07-22.
+This document describes version 0.57 of peri-doc (from Perl distribution Perinci-To-Doc), released on 2014-11-29.
 
 =head1 SYNOPSIS
 
@@ -165,6 +165,38 @@ This script will generate text/POD documentation for a Riap function or package.
 
 Support other entity types in the future.
 
+=head1 COMPLETION
+
+This script has shell tab completion capability with support for several shells.
+
+=head2 bash
+
+To activate bash completion for this script, put:
+
+ complete -C peri-doc peri-doc
+
+in your bash startup (e.g. C<~/.bashrc>). Your next shell session will then recognize tab completion for the command. Or, you can also directly execute the line above in your shell to activate immediately.
+
+You can also install L<App::BashCompletionProg> which makes it easy to add completion for Perinci::CmdLine-based scripts. After you install the module and put C<. ~/.bash-complete-prog> (or C<. /etc/bash-complete-prog>), you can just run C<bash-completion-prog> and the C<complete> command will be added to your C<~/.bash-completion-prog>. Your next shell session will then recognize tab completion for the command.
+
+=head2 tcsh
+
+To activate tcsh completion for this script, put:
+
+ complete peri-doc 'p/*/`peri-doc`/'
+
+in your tcsh startup (e.g. C<~/.tcshrc>). Your next shell session will then recognize tab completion for the command. Or, you can also directly execute the line above in your shell to activate immediately.
+
+=head2 zsh
+
+To activate zsh completion for this script, put:
+
+ _peri_doc() { read -l; local cl="$REPLY"; read -ln; local cp="$REPLY"; reply=(`COMP_LINE="$cl" COMP_POINT="$cp" peri-doc`) }
+
+ compctl -K _peri_doc peri-doc
+
+in your zsh startup (e.g. C<~/.zshrc>). Your next shell session will then recognize tab completion for the command. Or, you can also directly execute the line above in your shell to activate immediately.
+
 =head1 HOMEPAGE
 
 Please visit the project's homepage at L<https://metacpan.org/release/Perinci-To-Doc>.
@@ -183,11 +215,11 @@ feature.
 
 =head1 AUTHOR
 
-Steven Haryanto <stevenharyanto@gmail.com>
+perlancar <perlancar@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2014 by Steven Haryanto.
+This software is copyright (c) 2014 by perlancar@cpan.org.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
