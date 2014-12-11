@@ -1,5 +1,8 @@
 package Perinci::Sub::To::FuncBase;
 
+our $DATE = '2014-12-11'; # DATE
+our $VERSION = '0.58'; # VERSION
+
 use 5.010;
 use Data::Dump::OneLine qw(dump1);
 use Log::Any '$log';
@@ -8,12 +11,10 @@ use Perinci::Object;
 use Perinci::Sub::Normalize qw(normalize_function_metadata);
 use Perinci::ToUtil;
 
-with 'SHARYANTO::Role::Doc::Section';
+with 'Perinci::To::Doc::Role::Section';
 
 has meta => (is=>'rw');
 has name => (is=>'rw');
-
-our $VERSION = '0.57'; # VERSION
 
 sub BUILD {
     my ($self, $args) = @_;
@@ -43,7 +44,7 @@ sub before_gen_doc {
 # provide simple default implementation without any text wrapping. subclass such
 # as Perinci::Sub::To::Text will use another implementation, one that supports
 # text wrapping for example (provided by
-# SHARYANTO::Role::Doc::Section::AddTextLines).
+# Perinci::To::Doc::Role::Section::AddTextLines).
 sub add_doc_lines {
     my $self = shift;
     my $opts;
@@ -189,7 +190,7 @@ Perinci::Sub::To::FuncBase - Base class for Perinci::Sub::To::* function documen
 
 =head1 VERSION
 
-This document describes version 0.57 of Perinci::Sub::To::FuncBase (from Perl distribution Perinci-To-Doc), released on 2014-11-29.
+This document describes version 0.58 of Perinci::Sub::To::FuncBase (from Perl distribution Perinci-To-Doc), released on 2014-12-11.
 
 =for Pod::Coverage .+
 
@@ -199,7 +200,7 @@ Please visit the project's homepage at L<https://metacpan.org/release/Perinci-To
 
 =head1 SOURCE
 
-Source repository is at L<https://github.com/sharyanto/perl-Perinci-To-Doc>.
+Source repository is at L<https://github.com/perlancar/perl-Perinci-To-Doc>.
 
 =head1 BUGS
 

@@ -2,17 +2,19 @@ use 5.006;
 use strict;
 use warnings;
 
-# this test was generated with Dist::Zilla::Plugin::Test::Compile 2.043
+# this test was generated with Dist::Zilla::Plugin::Test::Compile 2.051
 
-use Test::More  tests => 9 + ($ENV{AUTHOR_TESTING} ? 1 : 0);
+use Test::More;
 
-
+plan tests => 11 + ($ENV{AUTHOR_TESTING} ? 1 : 0);
 
 my @module_files = (
     'Perinci/Sub/To/FuncBase.pm',
     'Perinci/Sub/To/POD.pm',
     'Perinci/Sub/To/Text.pm',
     'Perinci/To/Doc.pm',
+    'Perinci/To/Doc/Role/Section.pm',
+    'Perinci/To/Doc/Role/Section/AddTextLines.pm',
     'Perinci/To/POD.pm',
     'Perinci/To/PackageBase.pm',
     'Perinci/To/Text.pm',
@@ -79,6 +81,7 @@ foreach my $file (@scripts)
 
 
 
-is(scalar(@warnings), 0, 'no warnings found') if $ENV{AUTHOR_TESTING};
+is(scalar(@warnings), 0, 'no warnings found')
+    or diag 'got warnings: ', ( Test::More->can('explain') ? Test::More::explain(\@warnings) : join("\n", '', @warnings) ) if $ENV{AUTHOR_TESTING};
 
 

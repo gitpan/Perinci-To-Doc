@@ -1,5 +1,8 @@
 package Perinci::To::PackageBase;
 
+our $DATE = '2014-12-11'; # DATE
+our $VERSION = '0.58'; # VERSION
+
 use 5.010;
 use Data::Dump::OneLine qw(dump1);
 use Log::Any '$log';
@@ -7,13 +10,11 @@ use Moo;
 use Perinci::Object;
 use Perinci::ToUtil;
 
-with 'SHARYANTO::Role::Doc::Section';
+with 'Perinci::To::Doc::Role::Section';
 
 has name => (is=>'rw');
 has meta => (is=>'rw');
 has child_metas => (is=>'rw');
-
-our $VERSION = '0.57'; # VERSION
 
 sub BUILD {
     my ($self, $args) = @_;
@@ -40,7 +41,7 @@ sub before_gen_doc {
 # provide simple default implementation without any text wrapping. subclass such
 # as Perinci::To::Text will use another implementation, one that supports text
 # wrapping for example (provided by
-# SHARYANTO::Role::Doc::Section::AddTextLines).
+# Perinci::To::Doc::Role::Section::AddTextLines).
 sub add_doc_lines {
     my $self = shift;
     my $opts;
@@ -118,7 +119,7 @@ Perinci::To::PackageBase - Base class for Perinci::To::* package documentation g
 
 =head1 VERSION
 
-This document describes version 0.57 of Perinci::To::PackageBase (from Perl distribution Perinci-To-Doc), released on 2014-11-29.
+This document describes version 0.58 of Perinci::To::PackageBase (from Perl distribution Perinci-To-Doc), released on 2014-12-11.
 
 =for Pod::Coverage .+
 
@@ -128,7 +129,7 @@ Please visit the project's homepage at L<https://metacpan.org/release/Perinci-To
 
 =head1 SOURCE
 
-Source repository is at L<https://github.com/sharyanto/perl-Perinci-To-Doc>.
+Source repository is at L<https://github.com/perlancar/perl-Perinci-To-Doc>.
 
 =head1 BUGS
 
