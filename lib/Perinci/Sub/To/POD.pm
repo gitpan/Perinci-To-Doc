@@ -1,7 +1,7 @@
 package Perinci::Sub::To::POD;
 
-our $DATE = '2014-12-11'; # DATE
-our $VERSION = '0.58'; # VERSION
+our $DATE = '2015-01-02'; # DATE
+our $VERSION = '0.59'; # VERSION
 
 use 5.010001;
 use Log::Any '$log';
@@ -256,7 +256,6 @@ sub after_gen_doc {
         $self->add_doc_lines("=back", "");
     }
 
-    $self->add_doc_lines(__("Return value") . ':', "");
     my $rn = $meta->{result_naked};
     $self->add_doc_lines($self->_md2pod(__(
 "Returns an enveloped result (an array).
@@ -269,8 +268,9 @@ element (meta) is called result metadata and is optional, a hash
 that contains extra information.")), "")
          unless $rn;
 
-    $self->add_doc_lines(($dres->{res_summary} // "") . ($dres->{res_schema} ? " ($dres->{res_schema}[0])" : ""), "") if $dres->{res_summary} || $dres->{res_schema};
-    $self->add_doc_lines($self->_md2pod($dres->{res_description}), "") if $dres->{res_description};
+    $self->add_doc_lines(__("Return value") . ': ' .
+                         ($dres->{res_summary} // "") . " ($dres->{human_res})");
+$self->add_doc_lines("", $self->_md2pod($dres->{res_description}), "") if $dres->{res_description};
 
     if ($meta->{links} && @{ $meta->{links} }) {
         $self->add_doc_lines(__("See also") . ":", "", "=over", "");
@@ -302,7 +302,7 @@ Perinci::Sub::To::POD - Generate POD documentation from Rinci function metadata
 
 =head1 VERSION
 
-This document describes version 0.58 of Perinci::Sub::To::POD (from Perl distribution Perinci-To-Doc), released on 2014-12-11.
+This document describes version 0.59 of Perinci::Sub::To::POD (from Perl distribution Perinci-To-Doc), released on 2015-01-02.
 
 =head1 SYNOPSIS
 
@@ -324,7 +324,7 @@ Please visit the project's homepage at L<https://metacpan.org/release/Perinci-To
 
 =head1 SOURCE
 
-Source repository is at L<https://github.com/perlancar/perl-Perinci-To-Doc>.
+Source repository is at L<https://github.com/sharyanto/perl-Perinci-To-Doc>.
 
 =head1 BUGS
 
@@ -340,7 +340,7 @@ perlancar <perlancar@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2014 by perlancar@cpan.org.
+This software is copyright (c) 2015 by perlancar@cpan.org.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

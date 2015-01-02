@@ -1,15 +1,16 @@
 package Perinci::Sub::To::FuncBase;
 
-our $DATE = '2014-12-11'; # DATE
-our $VERSION = '0.58'; # VERSION
+our $DATE = '2015-01-02'; # DATE
+our $VERSION = '0.59'; # VERSION
 
 use 5.010;
-use Data::Dump::OneLine qw(dump1);
 use Log::Any '$log';
 use Moo;
+
+use Data::Dump::OneLine qw(dump1);
+use Data::Sah::Terse qw(terse_schema);
 use Perinci::Object;
 use Perinci::Sub::Normalize qw(normalize_function_metadata);
-use Perinci::ToUtil;
 
 with 'Perinci::To::Doc::Role::Section';
 
@@ -131,7 +132,7 @@ sub gen_doc_section_arguments {
         $arg->{schema} //= ['any'=>{}];
         my $s = $arg->{schema};
         my $ra = $raa->{$name} = {schema=>$s};
-        $ra->{human_arg} = Perinci::ToUtil::sah2human_short($s);
+        $ra->{human_arg} = terse_schema($s);
         if (exists $arg->{default}) {
             $ra->{human_arg_default} = dump1($arg->{default});
         } elsif (defined $s->[1]{default}) {
@@ -154,7 +155,7 @@ sub gen_doc_section_result {
 
     $dres->{res_schema} = $meta->{result} ? $meta->{result}{schema} : undef;
     $dres->{res_schema} //= [any => {}];
-    $dres->{human_res} = Perinci::ToUtil::sah2human_short($dres->{res_schema});
+    $dres->{human_res} = terse_schema($dres->{res_schema});
 
     my $rn = $meta->{result_naked};
     if ($rn) {
@@ -190,7 +191,7 @@ Perinci::Sub::To::FuncBase - Base class for Perinci::Sub::To::* function documen
 
 =head1 VERSION
 
-This document describes version 0.58 of Perinci::Sub::To::FuncBase (from Perl distribution Perinci-To-Doc), released on 2014-12-11.
+This document describes version 0.59 of Perinci::Sub::To::FuncBase (from Perl distribution Perinci-To-Doc), released on 2015-01-02.
 
 =for Pod::Coverage .+
 
@@ -200,7 +201,7 @@ Please visit the project's homepage at L<https://metacpan.org/release/Perinci-To
 
 =head1 SOURCE
 
-Source repository is at L<https://github.com/perlancar/perl-Perinci-To-Doc>.
+Source repository is at L<https://github.com/sharyanto/perl-Perinci-To-Doc>.
 
 =head1 BUGS
 
@@ -216,7 +217,7 @@ perlancar <perlancar@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2014 by perlancar@cpan.org.
+This software is copyright (c) 2015 by perlancar@cpan.org.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

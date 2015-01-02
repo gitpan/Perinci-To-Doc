@@ -6,7 +6,7 @@ use warnings;
 
 use Test::More;
 
-plan tests => 11 + ($ENV{AUTHOR_TESTING} ? 1 : 0);
+plan tests => 10 + ($ENV{AUTHOR_TESTING} ? 1 : 0);
 
 my @module_files = (
     'Perinci/Sub/To/FuncBase.pm',
@@ -17,8 +17,7 @@ my @module_files = (
     'Perinci/To/Doc/Role/Section/AddTextLines.pm',
     'Perinci/To/POD.pm',
     'Perinci/To/PackageBase.pm',
-    'Perinci/To/Text.pm',
-    'Perinci/ToUtil.pm'
+    'Perinci/To/Text.pm'
 );
 
 my @scripts = (
