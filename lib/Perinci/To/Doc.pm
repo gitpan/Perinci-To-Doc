@@ -1,6 +1,6 @@
 package Perinci::To::Doc;
 
-our $VERSION = '0.59'; # VERSION
+our $VERSION = '0.60'; # VERSION
 
 1;
 # ABSTRACT: Convert Rinci metadata to documentation
@@ -17,7 +17,7 @@ Perinci::To::Doc - Convert Rinci metadata to documentation
 
 =head1 VERSION
 
-This document describes version 0.59 of Perinci::To::Doc (from Perl distribution Perinci-To-Doc), released on 2015-01-02.
+This document describes version 0.60 of Perinci::To::Doc (from Perl distribution Perinci-To-Doc), released on 2015-01-05.
 
 =head1 DESCRIPTION
 

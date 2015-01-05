@@ -6,6 +6,7 @@ META.json
 META.yml
 Makefile.PL
 README
+TODO.md
 bin/peri-doc
 dist.ini
 lib/Perinci/Sub/To/FuncBase.pm

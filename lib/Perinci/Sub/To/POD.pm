@@ -1,7 +1,7 @@
 package Perinci::Sub::To::POD;
 
-our $DATE = '2015-01-02'; # DATE
-our $VERSION = '0.59'; # VERSION
+our $DATE = '2015-01-05'; # DATE
+our $VERSION = '0.60'; # VERSION
 
 use 5.010001;
 use Log::Any '$log';
@@ -269,8 +269,10 @@ that contains extra information.")), "")
          unless $rn;
 
     $self->add_doc_lines(__("Return value") . ': ' .
-                         ($dres->{res_summary} // "") . " ($dres->{human_res})");
-$self->add_doc_lines("", $self->_md2pod($dres->{res_description}), "") if $dres->{res_description};
+                         ($dres->{res_summary} // "") . " ($dres->{human_res})",
+                         "");
+    $self->add_doc_lines("", $self->_md2pod($dres->{res_description}), "")
+        if $dres->{res_description};
 
     if ($meta->{links} && @{ $meta->{links} }) {
         $self->add_doc_lines(__("See also") . ":", "", "=over", "");
@@ -302,7 +304,7 @@ Perinci::Sub::To::POD - Generate POD documentation from Rinci function metadata
 
 =head1 VERSION
 
-This document describes version 0.59 of Perinci::Sub::To::POD (from Perl distribution Perinci-To-Doc), released on 2015-01-02.
+This document describes version 0.60 of Perinci::Sub::To::POD (from Perl distribution Perinci-To-Doc), released on 2015-01-05.
 
 =head1 SYNOPSIS
 

@@ -1,7 +1,7 @@
 #!perl
 
-our $DATE = '2015-01-02'; # DATE
-our $VERSION = '0.59'; # VERSION
+our $DATE = '2015-01-05'; # DATE
+our $VERSION = '0.60'; # VERSION
 
 use 5.010;
 use strict;
@@ -141,7 +141,7 @@ peri-doc - Display text/POD documentation of Riap function or package
 
 =head1 VERSION
 
-This document describes version 0.59 of peri-doc (from Perl distribution Perinci-To-Doc), released on 2015-01-02.
+This document describes version 0.60 of peri-doc (from Perl distribution Perinci-To-Doc), released on 2015-01-05.
 
 =head1 SYNOPSIS
 
@@ -154,14 +154,6 @@ From command-line:
 =head1 DESCRIPTION
 
 This script will generate text/POD documentation for a Riap function or package.
-
-=head1 TODO
-
-=over
-
-=item * Support more pod2html options
-
-=back
 
 =head1 SEE ALSO
 
